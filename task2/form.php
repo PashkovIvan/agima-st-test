@@ -8,32 +8,34 @@ $response = [
     "messages" => [],
 ];
 
-if (!isset($_POST[EMAIL_INPUT_NAME]) || !isset($_POST[NAME_INPUT_NAME]) || !isset($_POST[RATING_INPUT_NAME]) ||
-    !isset($_POST[COMMENT_INPUT_NAME])) {
-    $response["success"] = false;
-    $response["messages"][] = "Заполните все поля формы";
-}
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (empty($_POST[EMAIL_INPUT_NAME]) || empty($_POST[NAME_INPUT_NAME]) || empty($_POST[RATING_INPUT_NAME]) ||
+        empty($_POST[COMMENT_INPUT_NAME])) {
+        $response["success"] = false;
+        $response["messages"][] = "Заполните все поля формы";
+    }
 
-if (!filter_var($_POST[EMAIL_INPUT_NAME], FILTER_VALIDATE_EMAIL)) {
-    $response["success"] = false;
-    $response["messages"][] = sprintf(
-        "E-mail адрес '%s' указан неверно", $_POST['email']
-    );
-}
+    if (!filter_var($_POST[EMAIL_INPUT_NAME], FILTER_VALIDATE_EMAIL)) {
+        $response["success"] = false;
+        $response["messages"][] = sprintf(
+            "E-mail адрес '%s' указан неверно", $_POST['email']
+        );
+    }
 
-if (strlen($_POST[NAME_INPUT_NAME]) > 20) {
-    $response["success"] = false;
-    $response["messages"][] = "Имя может содержать не более 20 символов";
-}
+    if (strlen($_POST[NAME_INPUT_NAME]) > 20) {
+        $response["success"] = false;
+        $response["messages"][] = "Имя может содержать не более 20 символов";
+    }
 
-if ($_POST[RATING_INPUT_NAME] < 0 || $_POST[RATING_INPUT_NAME] > 10) {
-    $response["success"] = false;
-    $response["messages"][] = "Оцените наш сайт по десятибальной шкале, спасибо!";
-}
+    if ($_POST[RATING_INPUT_NAME] < 0 || $_POST[RATING_INPUT_NAME] > 10) {
+        $response["success"] = false;
+        $response["messages"][] = "Оцените наш сайт по десятибальной шкале, спасибо!";
+    }
 
-if (strlen($_POST[COMMENT_INPUT_NAME]) > 500) {
-    $response["success"] = false;
-    $response["messages"][] = "Комментарий может содержать не более 500 символов";
+    if (strlen($_POST[COMMENT_INPUT_NAME]) > 500) {
+        $response["success"] = false;
+        $response["messages"][] = "Комментарий может содержать не более 500 символов";
+    }
 }
 
 if ($response["success"]) {
