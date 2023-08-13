@@ -8,6 +8,12 @@ $response = [
     "messages" => [],
 ];
 
+if (!isset($_POST[EMAIL_INPUT_NAME]) || !isset($_POST[NAME_INPUT_NAME]) || !isset($_POST[RATING_INPUT_NAME]) ||
+    !isset($_POST[COMMENT_INPUT_NAME])) {
+    $response["success"] = false;
+    $response["messages"][] = "Заполните все поля формы";
+}
+
 if (!filter_var($_POST[EMAIL_INPUT_NAME], FILTER_VALIDATE_EMAIL)) {
     $response["success"] = false;
     $response["messages"][] = sprintf(
