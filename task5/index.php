@@ -16,7 +16,6 @@ function getMaxCountRep($arNums): int
             $arNumsCountRep[] = $numsCountRep;
         } else {
             $numsCountRep = 0;
-            $arNumsCountRep[] = 0;
         }
 
         $i += 1;

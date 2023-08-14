@@ -32,8 +32,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/task2/settings.php";
             <label for="name">Имя</label>
         </div>
         <div class="mb-3">
-            <select class="form-select" aria-label="Small select example"
-                    id="rating" name="<?= RATING_INPUT_NAME ?>">
+            <select class="form-select" id="rating" name="<?= RATING_INPUT_NAME ?>">
                 <option selected>Оцените страницу :)</option>
                 <option>10</option>
                 <option>9</option>
