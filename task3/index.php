@@ -28,7 +28,7 @@ if ($a == 1 && $a == 2 && $a == 3) {
 }
 
 if (-6 == true) {
-    echo "<br>qqqq"; //Выводит "qqqq"
+    echo "qqqq"; //Выводит "qqqq"
     print_r(-6 == true); //Выводит "1"
 }
 if ('abc' == true) {

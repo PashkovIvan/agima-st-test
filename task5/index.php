@@ -5,24 +5,22 @@ $arNums = [1, 1, 0, 1, 1, 1,];
 //Возвращает максимальное количество повторяемых единиц, идущих друг за другом
 function getMaxCountRep($arNums): int
 {
-    $numsCountRep = 0;
-    $arNumsCountRep = [];
-    $arIndexSize = count($arNums);
-    $i = 0;
+    $curCountRep = 0;
+    $maxCountRep = 0;
 
-    while ($i < $arIndexSize) {
-        if ($arNums[$i] === 1) {
-            $numsCountRep += 1;
-            $arNumsCountRep[] = $numsCountRep;
+    foreach ($arNums as $arNum) {
+        if ($arNum === 1) {
+            $curCountRep += 1;
         } else {
-            $numsCountRep = 0;
-        }
+            if ($curCountRep > $maxCountRep) {
+                $maxCountRep = $curCountRep;
+            }
 
-        $i += 1;
+            $curCountRep = 0;
+        }
     }
 
-    $maxCountRep = max($arNumsCountRep);
-    return $maxCountRep;
+    return ($curCountRep > $maxCountRep) ? $curCountRep : $maxCountRep;
 }
 
 print_r(getMaxCountRep($arNums));

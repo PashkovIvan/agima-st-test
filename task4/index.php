@@ -9,14 +9,12 @@ $array = [
 //Возвращает массив в обратном порядке
 function getArReverse($array): array
 {
-    $arIndexSize = count($array) - 1;
     $arReverse = [];
+    end($array);
 
-    while ($arIndexSize >= 0) {
-        $arLastItem = array_slice($array, $arIndexSize);
-        $arReverse = array_merge($arReverse, $arLastItem);
-        $arIndexSize -= 1;
-    }
+    do {
+        $arReverse[key($array)] = current($array);
+    } while (prev($array));
 
     return $arReverse;
 }
